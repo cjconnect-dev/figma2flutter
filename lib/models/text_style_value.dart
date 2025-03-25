@@ -9,7 +9,6 @@ class TextStyleValue {
   final DimensionValue? lineHeight;
   final DimensionValue? fontSize;
   final LetterSpacingValue? letterSpacing;
-  final TextLeadingDistribution leadingDistribution;
 
   TextStyleValue._({
     this.fontFamily,
@@ -17,7 +16,6 @@ class TextStyleValue {
     this.lineHeight,
     this.fontSize,
     this.letterSpacing,
-    this.leadingDistribution = TextLeadingDistribution.even,
   });
 
   static TextStyleValue? maybeParse(dynamic value) {
@@ -35,7 +33,6 @@ class TextStyleValue {
       lineHeight: sizeAndHeight.lineHeight,
       fontSize: sizeAndHeight.fontSize,
       letterSpacing: letterSpacing,
-      leadingDistribution: TextLeadingDistribution.even, 
     );
   }
 
@@ -49,9 +46,6 @@ class TextStyleValue {
     if (lineHeight != null) parts.add('height: $lineHeight');
     if (letterSpacing != null) parts.add('letterSpacing: $letterSpacing');
 
-    // 항상 추가
-    parts.add('leadingDistribution: TextLeadingDistribution.even');
-    
     if (parts.isEmpty) return 'const TextStyle()';
 
     return '''const TextStyle(
