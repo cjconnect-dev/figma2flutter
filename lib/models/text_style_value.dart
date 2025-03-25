@@ -51,7 +51,7 @@ class TextStyleValue {
     if (fontWeight != null) parts.add('fontWeight: $fontWeight');
     if (lineHeight != null) parts.add('height: $lineHeight');
     if (letterSpacing != null) parts.add('letterSpacing: $letterSpacing');
-    parts.add("leadingDistribution: '${leadingDistribution}'");
+    parts.add("leadingDistribution: ${leadingDistribution}");
     if (parts.isEmpty) return 'const TextStyle()';
 
     return '''const TextStyle(
