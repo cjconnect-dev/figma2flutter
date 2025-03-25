@@ -2,6 +2,7 @@ import 'package:figma2flutter/models/dimension_value.dart';
 import 'package:figma2flutter/models/font_family_value.dart';
 import 'package:figma2flutter/models/font_weight_value.dart';
 import 'package:figma2flutter/models/letter_spacing_value.dart';
+import 'package:figma2flutter/models/text_leading_distribution_value.dart';
 
 class TextStyleValue {
   final FontFamilyValue? fontFamily;
@@ -9,6 +10,7 @@ class TextStyleValue {
   final DimensionValue? lineHeight;
   final DimensionValue? fontSize;
   final LetterSpacingValue? letterSpacing;
+  final TextLeadingDistributionValue leadingDistribution;
 
   TextStyleValue._({
     this.fontFamily,
@@ -16,6 +18,7 @@ class TextStyleValue {
     this.lineHeight,
     this.fontSize,
     this.letterSpacing,
+    this.leadingDistribution = const TextLeadingDistributionValue(TextLeadingDistribution.even),
   });
 
   static TextStyleValue? maybeParse(dynamic value) {
@@ -26,6 +29,8 @@ class TextStyleValue {
     final sizeAndHeight = _FontSizeLineHeight(value);
 
     final letterSpacing = LetterSpacingValue.maybeParse(value['letterSpacing']);
+    final leadingDistribution = TextLeadingDistributionValue.maybeParse(value['leadingDistribution']);
+
 
     return TextStyleValue._(
       fontFamily: fontFamily,
@@ -33,6 +38,7 @@ class TextStyleValue {
       lineHeight: sizeAndHeight.lineHeight,
       fontSize: sizeAndHeight.fontSize,
       letterSpacing: letterSpacing,
+      leadingDistribution: leadingDistribution ?? TextLeadingDistributionValue(TextLeadingDistribution.even),
     );
   }
 
@@ -45,7 +51,7 @@ class TextStyleValue {
     if (fontWeight != null) parts.add('fontWeight: $fontWeight');
     if (lineHeight != null) parts.add('height: $lineHeight');
     if (letterSpacing != null) parts.add('letterSpacing: $letterSpacing');
-
+    parts.add("leadingDistribution: '${leadingDistribution}'");
     if (parts.isEmpty) return 'const TextStyle()';
 
     return '''const TextStyle(

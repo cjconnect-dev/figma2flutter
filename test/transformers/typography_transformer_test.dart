@@ -80,6 +80,7 @@ void main() {
   fontSize: 12.0,
   fontWeight: FontWeight.w800,
   letterSpacing: 4.0,
+  leadingDistribution: 'TextLeadingDistribution.TextLeadingDistribution.even',
 );''',
       ),
     );
@@ -92,6 +93,7 @@ void main() {
   fontWeight: FontWeight.w400,
   height: 1.4,
   letterSpacing: 0.64,
+  leadingDistribution: 'TextLeadingDistribution.TextLeadingDistribution.even',
 );''',
       ),
     );
