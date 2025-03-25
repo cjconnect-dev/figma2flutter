@@ -18,15 +18,6 @@ class TypographyTransformer extends SingleTokenTransformer {
     final value = token.value;
 
     final textStyle = TextStyleValue.maybeParse(value);
-    
-    String transformedTextStyle = textStyle!.toString();
-    if (!transformedTextStyle.contains('leadingDistribution')) {
-      transformedTextStyle = transformedTextStyle.replaceFirst(
-        'const TextStyle(',
-        'const TextStyle(\n  leadingDistribution: TextLeadingDistribution.even,',
-      );
-    }
-
-    return transformedTextStyle;
+    return textStyle!.toString();
   }
 }
