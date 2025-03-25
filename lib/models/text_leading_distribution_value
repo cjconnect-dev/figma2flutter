@@ -1,0 +1,29 @@
+enum TextLeadingDistribution {
+  even,
+  proportional,
+}
+
+class TextLeadingDistributionValue {
+  final TextLeadingDistribution distribution;
+
+  const TextLeadingDistributionValue(this.distribution);
+
+  /// Returns a [TextLeadingDistributionValue] if the [value] is valid.
+  /// Otherwise returns null.
+  static TextLeadingDistributionValue? maybeParse(dynamic value) {
+    if (value is String) {
+      switch (value.toLowerCase()) {
+        case 'even':
+          return TextLeadingDistributionValue(TextLeadingDistribution.even);
+        case 'proportional':
+          return TextLeadingDistributionValue(TextLeadingDistribution.proportional);
+        default:
+          return null;
+      }
+    }
+    return null;
+  }
+
+  @override
+  String toString() => 'TextLeadingDistribution.$distribution';
+}
